@@ -1,22 +1,21 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Hello Cosmos!');
 });
 
-const goodsRouter = require("./routes/goods");
-const cartsRouter = require("./routes/carts");
-
-const connect = require("./schemas");
+const postsRouter = require('./routes/posts.js');
+const connect = require('./schemas');
 connect();
 
 app.use(express.json());
-app.use("/api", [goodsRouter, cartsRouter]);
+
+app.use("/", [postsRouter]);
 
 app.listen(port, () => {
-  console.log(port, '포트로 서버가 열렸어요!');
+  console.log(port, 'Port has opened!');
 });
 
 
